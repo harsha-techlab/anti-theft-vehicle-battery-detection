@@ -91,7 +91,7 @@ anti-theft-vehicle-battery-detection/
 ![Project Setup](images/transmitter.png)
 
 ### Circuit Diagram
-![Circuit Diagram](images/circuit-diagram.png)
+![Circuit Diagram](images/circuitconnections.png)
 
 *Add the folders and images when you have those files ready.*
 
