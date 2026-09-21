@@ -1,108 +1,120 @@
 
-# ⚡ Anti-Theft Vehicle Battery Detection System
+# 🚗 Anti-Theft Vehicle Battery Detection System
 
-An electronics engineering project focused on detecting potential vehicle battery theft or unauthorized battery removal.
-
-> **Project Category:** Embedded Systems | Vehicle Security | Electronics
-
----
+A wireless security system designed to detect suspicious activity near a vehicle battery and alert the owner using LoRa communication.
 
 ## 📌 Project Overview
 
-Vehicle batteries are an important part of a vehicle's electrical system. This project explores a method of detecting potential battery theft or unauthorized battery removal using an electronic detection system.
+This project uses two Arduino Uno boards to monitor a vehicle battery area and transmit alerts wirelessly to a receiver unit.
 
-The project aims to demonstrate how electronic sensing and monitoring can be applied to vehicle security.
+The transmitter monitors motion, vibration, and battery voltage. When suspicious activity or a battery disconnection condition is detected, the system activates a local buzzer and sends an alert to the receiver.
 
-## 🎯 Project Objectives
+## ✨ Features
 
-- Explore electronic methods for detecting battery removal.
-- Develop a system for identifying a potential theft event.
-- Integrate suitable hardware and software components.
-- Demonstrate the working principle through a prototype.
+- Motion detection using an HC-SR505 PIR sensor
+- Vibration detection using an SW-420 sensor
+- Battery voltage monitoring
+- Combined motion-and-vibration detection to reduce false alarms
+- Wireless communication using LoRa E32-433T20D modules
+- Local and remote buzzer alerts
+- Battery disconnection detection using a 10 V threshold
+- No Wi-Fi or internet connection required for the LoRa link
 
-## ⚙️ Hardware Components
+## 🧰 Components Used
 
-<!-- Replace these placeholders with your actual components. -->
+| Component | Quantity |
+|---|---:|
+| Arduino Uno | 2 |
+| LoRa E32-433T20D module | 2 |
+| HC-SR505 PIR sensor | 1 |
+| SW-420 vibration sensor | 1 |
+| Voltage sensor module | 1 |
+| Active buzzer | 2 |
+| Power supply, jumper wires and other accessories | As required |
 
-- [Add your microcontroller]
-- [Add your detection sensor]
-- [Add your alert or notification component]
-- [Add other components]
+## ⚙️ Working Principle
 
-## 💻 Software & Tools
+### 1. Normal Monitoring
+The transmitter continuously reads the PIR sensor, vibration sensor, and battery voltage. The buzzers remain silent under normal conditions.
 
-<!-- List only the tools you actually used. -->
+### 2. Motion and Vibration Detection
+When both the PIR sensor and vibration sensor detect activity together, the transmitter activates its buzzer for five beeps and sends an `ALERT` message through LoRa.
 
-- Programming language: [Add language]
-- Development environment: [Add IDE]
-- Simulation/design tools: [If applicable]
+The receiver gets the message and activates its buzzer for five beeps.
 
-## 🔄 Working Principle
+### 3. Battery Disconnection Detection
+The voltage sensor monitors the battery voltage. When the measured voltage falls below the configured 10 V threshold, the transmitter sends `BATTERY_LOST` and activates a continuous buzzer alarm.
 
-<!-- Describe your actual system's operation. -->
+The receiver also activates its continuous alarm.
 
-1. The system monitors the vehicle battery using [your detection method].
-2. The sensor or detection circuit identifies [the event you detect].
-3. The controller processes the detection signal.
-4. [Describe how your system responds or generates an alert.]
+### 4. Battery Reconnection
+When the measured voltage returns to at least 10 V after a battery-loss condition, the transmitter sends `BATTERY_OK` and stops its buzzer. The receiver stops its buzzer after receiving the message.
 
-## 🖼️ Project Demonstration
+## 📡 System Architecture
 
-<!-- Add your actual project photos and video links. -->
+Vehicle Battery Area
+→ Sensors
+→ Arduino Uno Transmitter
+→ LoRa E32-433T20D
+→ LoRa E32-433T20D
+→ Arduino Uno Receiver
+→ Owner Alert Buzzer
 
-| Project Stage | Image |
-|---|---|
-| Hardware Setup | Add image here |
-| Circuit / Connections | Add image here |
-| Working Prototype | Add image here |
+## 💻 Software and Communication
 
-## 📂 Repository Structure
+- **Programming language:** Arduino C/C++
+- **Development environment:** Arduino IDE
+- **Wireless communication:** LoRa, 433 MHz
+- **Serial communication:** SoftwareSerial at 9600 baud
+
+## 📁 Repository Structure
 
 ```text
 anti-theft-vehicle-battery-detection/
 ├── README.md
-├── src/
-│   └── [your source code]
-├── hardware/
-│   └── [circuit diagrams]
-├── images/
-│   └── [project photos]
-└── docs/
-    └── [additional documentation]
+├── transmitter/
+│   └── transmitter.ino
+├── receiver/
+│   └── receiver.ino
+├── docs/
+│   └── project-documentation.pdf
+└── images/
+    ├── project-setup.jpg
+    └── circuit-diagram.jpg
 ```
 
-<!-- Create only the folders and files you actually need. -->
+*Add the folders and images when you have those files ready.*
 
-## 🚀 Getting Started
+## 🧪 Testing
 
-<!-- Add setup instructions after uploading your actual code. -->
+The documented testing procedure includes:
 
-1. Review the hardware components and circuit diagram.
-2. Install the required development tools.
-3. Connect the hardware according to your documented circuit.
-4. Upload and test the project code.
-5. Verify the detection and alert behavior.
+- Testing the PIR and vibration sensors individually
+- Testing combined motion and vibration detection
+- Monitoring voltage readings through the Serial Monitor
+- Simulating a battery disconnection using a test setup
+- Checking LoRa alert reception and buzzer responses
 
-## 🧪 Testing & Results
+## 🎯 Applications
 
-<!-- Add your actual observations and test results. -->
+- Vehicle battery security demonstrations
+- Wireless tampering-alert prototypes
+- Embedded systems and IoT learning projects
 
-- Detection behavior: [Add results]
-- Alert response: [Add results]
-- Prototype observations: [Add results]
+## 🚀 Future Improvements
 
-## 🔮 Future Improvements
+- Add a display for sensor and battery status
+- Add event logging
+- Improve alert reliability and power management
+- Evaluate additional communication and notification options
 
-- Explore additional detection methods.
-- Improve monitoring and notification features.
-- Investigate integration with connected vehicle systems.
+## 👨‍💻 Project Information
 
-## 👨‍💻 Author
-
-**Harsha | HARSHA_ECE**
-
-GitHub: [@harsha-techlab](https://github.com/harsha-techlab)
+**Project:** Anti-Theft Vehicle Battery Detection System  
+**Controller:** Arduino Uno  
+**Communication:** LoRa E32-433T20D  
+**Status:** Prototype project
 
 ---
 
-*Dream • Design • Develop • Demonstrate ⚡*
+> This is an educational prototype. Test with a suitable, isolated test setup and get qualified supervision before connecting it to a vehicle battery.
