@@ -77,9 +77,9 @@ anti-theft-vehicle-battery-detection/
 │   └── transmitter.ino
 ├── receiver/
 │   └── receiver.ino
-├── docs/
-│   ├── Anti-Theft vehicle battery detection system.pdf
-│   └── documentation
+└── docs/
+    └── Anti-Theft vehicle battery detection system.pdf
+    
 
 ```
 
