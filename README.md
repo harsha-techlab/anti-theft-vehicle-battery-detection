@@ -70,6 +70,7 @@ Vehicle Battery Area
 ## 📁 Repository Structure
 
 ```text
+
 anti-theft-vehicle-battery-detection/
 ├── README.md
 ├── transmitter/
@@ -77,10 +78,9 @@ anti-theft-vehicle-battery-detection/
 ├── receiver/
 │   └── receiver.ino
 ├── docs/
-│   └── project-documentation.pdf
-└── images/
-    ├── project-setup.jpg
-    └── circuit-diagram.jpg
+│   ├── Anti-Theft vehicle battery detection system.pdf
+│   └── documentation
+
 ```
 
 *Add the folders and images when you have those files ready.*
